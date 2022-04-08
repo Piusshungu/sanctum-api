@@ -20,14 +20,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//Public Routes 
+
 Route::get('/products', [ProductsController::class, 'index']);
 
-Route::post('/products', [ProductsController::class, 'storeProducts']);
-
-Route::get('/products/view/{id}', [ProductsController::class, 'viewProduct']);
-
-Route::post('/products/update/{id}', [ProductsController::class, 'updateProduct']);
-
-Route::get('/products/delete/{id}', [ProductsController::class, 'deleteProduct']);
-
 Route::get('/products/search/{name}', [ProductsController::class, 'searchProduct']);
+
+//Protected Routes
+
+Route::group(['middleware' => ['auth:sanctum']], function(){  
+
+    Route::post('/products', [ProductsController::class, 'storeProducts']);
+
+    Route::get('/products/view/{id}', [ProductsController::class, 'viewProduct']);
+
+    Route::post('/products/update/{id}', [ProductsController::class, 'updateProduct']);
+
+    Route::get('/products/delete/{id}', [ProductsController::class, 'deleteProduct']);
+});
