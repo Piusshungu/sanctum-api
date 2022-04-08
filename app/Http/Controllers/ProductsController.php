@@ -24,4 +24,9 @@ class ProductsController extends Controller
 
         return Product::create($productsDetails);
     }
+
+    public function viewProduct($id)
+    {
+        return Product::find($id);
+    }
 }
