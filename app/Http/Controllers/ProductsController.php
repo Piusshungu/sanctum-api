@@ -43,4 +43,9 @@ class ProductsController extends Controller
     {
         return Product::destroy($id);
     }
+
+    public function searchProduct($name)
+    {
+        return Product::where('name', 'like', '%'.$name.'%')->get();
+    }
 }
