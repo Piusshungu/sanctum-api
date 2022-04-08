@@ -29,4 +29,13 @@ class ProductsController extends Controller
     {
         return Product::find($id);
     }
+
+    public function updateProduct(Request $request, $id)
+    {
+        $product = Product::find($id);
+        
+        $product->update($request->all());
+
+        return $product;
+    }
 }
