@@ -38,4 +38,9 @@ class ProductsController extends Controller
 
         return $product;
     }
+
+    public function deleteProduct($id)
+    {
+        return Product::destroy($id);
+    }
 }
