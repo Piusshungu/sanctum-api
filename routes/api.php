@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Product;
@@ -25,6 +26,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/products', [ProductsController::class, 'index']);
 
 Route::get('/products/search/{name}', [ProductsController::class, 'searchProduct']);
+
+Route::post('/register', [AuthController::class, 'userRegistration']);
 
 //Protected Routes
 

@@ -13,12 +13,17 @@ class AuthController extends Controller
     {
         $userDetails = $request->validate([
 
-            'name' => 'required',
-            'email' => 'required|unique:users,email,',
-            'password' => 'required|confirmed'
+            'name' => 'required|string',
+            'email' => 'required|string|unique:users,email,',
+            'password' => 'required|string|confirmed'
         ]);
 
-        $user = User::create($userDetails);
+        $user = User::create([
+
+            'name' => $userDetails['name'],
+            'email' => $userDetails['email'],
+            'password' => bcrypt($userDetails['password'])
+        ]);
 
         $token = $user->createToken('application_token')->plainTextToken;
 
@@ -28,7 +33,7 @@ class AuthController extends Controller
             'token' => $token
         ];
 
-        return response($response, 200);
+        return response($response, 201);
     }
 
     
