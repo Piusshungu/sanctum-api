@@ -29,6 +29,8 @@ Route::get('/products/search/{name}', [ProductsController::class, 'searchProduct
 
 Route::post('/register', [AuthController::class, 'userRegistration']);
 
+Route::post('/login', [AuthController::class, 'login']);
+
 //Protected Routes
 
 Route::group(['middleware' => ['auth:sanctum']], function(){  
