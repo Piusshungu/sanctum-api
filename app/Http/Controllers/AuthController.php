@@ -7,7 +7,6 @@ use App\Models\User;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use Validator;
 
 
 class AuthController extends Controller
@@ -36,7 +35,7 @@ class AuthController extends Controller
             'token' => $token
         ];
 
-        return response($response, 201);
+        return response()->json($response, 201);
     }
 
     public function login(Request $request)
@@ -48,7 +47,6 @@ class AuthController extends Controller
             'email' => 'required'
         ]);
 
-        //Get User Email
         $user = User::where('email', $userDetails['email'])->first();
 
         if(!$user || !Hash::check($userDetails['password'], $user->password)){
