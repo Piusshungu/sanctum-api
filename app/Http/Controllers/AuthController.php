@@ -17,7 +17,10 @@ class AuthController extends Controller
 
             'name' => 'required|string',
             'email' => 'required|string|unique:users,email,',
-            'password' => 'required|string|confirmed'
+            'password' => 'required|string|confirmed',
+            'location' => 'required',
+            'phone_number' => 'required',
+            'profile_picture' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048'
         ]);
 
         $user = User::create([
