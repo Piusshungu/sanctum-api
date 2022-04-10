@@ -11,4 +11,8 @@ class Shop extends Model
     use HasFactory;
     
     use Uuids;
+
+    protected $guarded = ['id'];
+
+    public $incrementing = false;
 }
