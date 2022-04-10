@@ -15,4 +15,18 @@ class Shop extends Model
     protected $guarded = ['id'];
 
     public $incrementing = false;
+
+    public function scopeFilter($query, array $filters)
+    {
+        if(isset($filters['search'])){
+
+            $query->where('shop_name', 'like', '%'. request('search'). '%')
+
+            ->orWhere('location', 'like', '%'. request('search'). '%')
+
+            ->orWhere('email', 'like', '%'. request('search'). '%')
+
+            ->orWhere('phone_number', 'like', '%'. request('search'). '%');
+        }
+    }
 }
