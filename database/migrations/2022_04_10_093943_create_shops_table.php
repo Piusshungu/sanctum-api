@@ -26,6 +26,7 @@ class CreateShopsTable extends Migration
             $table->string('logo')->nullable();
             $table->string('category');
             $table->string('business_licence');
+            $table->string('password');
             $table->timestamps();
         });
     }
