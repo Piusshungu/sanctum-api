@@ -30,6 +30,11 @@ class Shop extends Model
         }
     }
 
+    public function setPasswordAttribute($password){
+        
+        $this->attributes['password'] = bcrypt($password);
+    }
+    
     public function setPhoneNumberAttribute($phone_number)
     {
        
