@@ -51,7 +51,7 @@ class AuthController extends Controller
             'token' => $token
         ];
 
-        return response()->json($response, 200);
+        return response()->json($response, 201);
     }
 
     public function login(Request $request)
