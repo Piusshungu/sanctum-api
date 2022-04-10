@@ -45,10 +45,13 @@ class AuthController extends Controller
         $response = [
 
             'user' => $user,
+
+            'message' => 'Your account has been registered',
+
             'token' => $token
         ];
 
-        return response()->json($response, 201);
+        return response()->json($response, 200);
     }
 
     public function login(Request $request)
