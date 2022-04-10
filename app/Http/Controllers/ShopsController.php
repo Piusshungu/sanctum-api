@@ -40,7 +40,7 @@ class ShopsController extends Controller
     
             $saveLogo->path = $path;
 
-            $attributes = array_merge($attributes, ['logp'=> $path]);
+            $attributes = array_merge($attributes, ['logo'=> $path]);
         }
 
         return Shop::create($attributes);

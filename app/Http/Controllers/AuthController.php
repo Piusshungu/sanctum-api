@@ -27,8 +27,26 @@ class AuthController extends Controller
 
             'name' => $userDetails['name'],
             'email' => $userDetails['email'],
+            'location' => $userDetails['location'],
+            'phone_number' => $userDetails['phone_number'],
+            'profile_picture' => $userDetails['profile_picture'],
             'password' => bcrypt($userDetails['password'])
         ]);
+
+        if(request()->has('profile_picture') && !is_null(request()->profile_picture))
+        {
+            $pictureName = request()->file('profile_picture')->getClientOriginalName();
+
+            $path = request()->file('profile_picture')->store('public/images');
+    
+            $savePicture = new User();
+    
+            $savePicture->pictureName = $pictureName;
+    
+            $savePicture->path = $path;
+
+            $user = array_merge($user, ['profile_picture'=> $path]);
+        }
 
         $token = $user->createToken('application_token')->plainTextToken;
 
@@ -83,6 +101,4 @@ class AuthController extends Controller
             'message' => 'User logged out successfully'
         ];
     }
-
-    
 }
