@@ -19,7 +19,8 @@ class ProductsController extends Controller
             'name' => 'required',
             'description' => 'nullable|string',
             'slug' => 'required',
-            'price' => 'required'
+            'price' => 'required',
+            'picture' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048'
         ]);
 
         return Product::create($productsDetails);
