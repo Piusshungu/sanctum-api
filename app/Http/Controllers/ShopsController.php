@@ -43,6 +43,15 @@ class ShopsController extends Controller
             $attributes = array_merge($attributes, ['logo'=> $path]);
         }
 
-        return Shop::create($attributes);
+        $shopDetails = Shop::create($attributes);
+
+        $response = [
+
+            'user' => $shopDetails,
+
+            'message' => 'Your Shop has been registered',
+        ];
+
+        return response()->json($response, 200);
     }
 }
