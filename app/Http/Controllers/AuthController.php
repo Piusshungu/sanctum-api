@@ -13,7 +13,7 @@ class AuthController extends Controller
 {
     public function userRegistration(Request $request)
     {
-        $userDetails = $request->validate([
+        $user = $request->validate([
 
             'name' => 'required|string',
             'email' => 'required|string|unique:users,email,',
@@ -23,21 +23,11 @@ class AuthController extends Controller
             'profile_picture' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048'
         ]);
 
-        $user = User::create([
-
-            'name' => $userDetails['name'],
-            'email' => $userDetails['email'],
-            'location' => $userDetails['location'],
-            'phone_number' => $userDetails['phone_number'],
-            'profile_picture' => $userDetails['profile_picture'],
-            'password' => bcrypt($userDetails['password'])
-        ]);
-
-        if(request()->has('profile_picture') && !is_null(request()->profile_picture))
+        if($request->has('profile_picture') && !is_null($request->profile_picture))
         {
-            $pictureName = request()->file('profile_picture')->getClientOriginalName();
+            $pictureName = $request->file('profile_picture')->getClientOriginalName();
 
-            $path = request()->file('profile_picture')->store('public/images');
+            $path = $request->file('profile_picture')->store('public/images');
     
             $savePicture = new User();
     
@@ -47,6 +37,8 @@ class AuthController extends Controller
 
             $user = array_merge($user, ['profile_picture'=> $path]);
         }
+
+        $user = User::create($user);
 
         $token = $user->createToken('application_token')->plainTextToken;
 

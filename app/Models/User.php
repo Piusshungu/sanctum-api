@@ -48,6 +48,11 @@ class User extends Authenticatable
         $this->hasMany(Order::class);
     }
 
+    public function setPasswordAttribute($password){
+        
+        $this->attributes['password'] = bcrypt($password);
+    }
+
     public function setPhoneNumberAttribute($phone_number)
     {
       
