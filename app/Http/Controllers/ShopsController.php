@@ -9,9 +9,9 @@ class ShopsController extends Controller
 {
     public function index()
     {
-        return Shop::all()->orderBy('shop_name')->filter(request(['search']))
+        return Shop::orderBy('shop_name')->filter(request(['search']))
             
-        ->paginate(10)->withQueryString();
+        ->paginate(10)->withQueryString()->all();
     }
 
     public function registerShop(Request $request)
