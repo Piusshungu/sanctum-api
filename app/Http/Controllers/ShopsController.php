@@ -36,7 +36,7 @@ class ShopsController extends Controller
     
             $saveLogo = new Shop();
     
-            $saveLogo->avatarName = $logoName;
+            $saveLogo->logoName = $logoName;
     
             $saveLogo->path = $path;
 
