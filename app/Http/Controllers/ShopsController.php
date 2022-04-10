@@ -27,5 +27,7 @@ class ShopsController extends Controller
             'business_licence' => 'required',
             'password' => 'required|confirmed'
         ]);
+
+        
     }
 }
