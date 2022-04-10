@@ -47,7 +47,7 @@ class ShopsController extends Controller
 
         $response = [
 
-            'user' => $shopDetails,
+            'shop' => $shopDetails,
 
             'message' => 'Your Shop has been registered',
         ];
