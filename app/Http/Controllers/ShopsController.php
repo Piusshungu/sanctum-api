@@ -28,6 +28,21 @@ class ShopsController extends Controller
             'password' => 'required|confirmed'
         ]);
 
-        
+        if(request()->has('logo') && !is_null(request()->logo))
+        {
+            $logoName = request()->file('logo')->getClientOriginalName();
+
+            $path = request()->file('logo')->store('public/images');
+    
+            $saveLogo = new Shop();
+    
+            $saveLogo->avatarName = $logoName;
+    
+            $saveLogo->path = $path;
+
+            $attributes = array_merge($attributes, ['logp'=> $path]);
+        }
+
+        return Shop::create($attributes);
     }
 }
