@@ -109,4 +109,16 @@ class ShopsController extends Controller
             'message' => 'Shop successfully deleted',
         ], 200);
     }
+
+    public function viewShop($id)
+    {
+        $shop = Shop::find($id);
+
+        return Shop::where('id', $id)->first();
+
+        return response()->json([
+
+            'shop' => $shop,
+        ]);
+    }
 }

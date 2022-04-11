@@ -53,4 +53,6 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::post('/shop/update/{id}', [ShopsController::class, 'editShop']);
 
     Route::delete('/shop/delete/{id}', [ShopsController::class, 'deleteShop']);
+
+    Route::get('/shop/view/{id}', [ShopsController::class, 'viewShop']);
 });
