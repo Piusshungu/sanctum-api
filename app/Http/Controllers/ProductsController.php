@@ -35,7 +35,7 @@ class ProductsController extends Controller
     
             $savepicture->path = $path;
 
-            $productsDetails = array_merge($productsDetails, ['logo'=> $path]);
+            $productsDetails = array_merge($productsDetails, ['picture'=> $path]);
         }
 
         $SaveProduct = Product::create($productsDetails);
