@@ -54,8 +54,6 @@ class ProductsController extends Controller
     {
         $product = Product::find($id);
 
-        return Product::where('id', $id)->first();
-
         return response()->json([
 
             'product' => $product,
