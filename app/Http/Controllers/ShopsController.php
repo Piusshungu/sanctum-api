@@ -103,5 +103,10 @@ class ShopsController extends Controller
         $shop = Shop::find($id);
 
         $shop->delete();
+
+        return response()->json([
+
+            'message' => 'Shop successfully deleted',
+        ], 200);
     }
 }
