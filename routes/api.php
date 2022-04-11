@@ -49,4 +49,6 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::post('/logout', [AuthController::class, 'logout']);
 
     Route::get('/shops', [ShopsController::class, 'index']);
+
+    Route::post('/shop/update/{id}', [ShopsController::class, 'editShop']);
 });
