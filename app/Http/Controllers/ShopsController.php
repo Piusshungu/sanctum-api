@@ -57,7 +57,7 @@ class ShopsController extends Controller
 
     public function editShop(Request $request, $id)
     {
-        $request->validate([
+        $attributes = $request->validate([
 
             'shop_name' => 'required',
             'phone_number' => 'required',
@@ -69,15 +69,28 @@ class ShopsController extends Controller
             'password' => 'required|confirmed'
         ]);
 
-        $shopDetails = $request->all();
+        if(request()->has('logo') && !is_null(request()->logo))
+        {
+            $logoName = request()->file('logo')->getClientOriginalName();
+
+            $path = request()->file('logo')->store('public/images');
+    
+            $saveLogo = new Shop();
+    
+            $saveLogo->logoName = $logoName;
+    
+            $saveLogo->path = $path;
+
+            $attributes = array_merge($attributes, ['logo'=> $path]);
+        }
 
         $shop = Shop::find($id);
 
-        $shop->update($shopDetails);
+        $shop->update($attributes);
 
         $response = [
 
-            'shop' => $shopDetails,
+            'updated_shop_details' => $shop,
 
             'message' => 'Shop Details has been updated',
         ];
