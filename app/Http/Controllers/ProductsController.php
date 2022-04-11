@@ -52,7 +52,14 @@ class ProductsController extends Controller
 
     public function viewProduct($id)
     {
-        return Product::find($id);
+        $product = Product::find($id);
+
+        return Product::where('id', $id)->first();
+
+        return response()->json([
+
+            'product' => $product,
+        ]);
     }
 
     public function updateProduct(Request $request, $id)
