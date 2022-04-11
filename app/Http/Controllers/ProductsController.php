@@ -23,7 +23,31 @@ class ProductsController extends Controller
             'picture' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048'
         ]);
 
-        return Product::create($productsDetails);
+        if(request()->has('picture') && !is_null(request()->picture))
+        {
+            $pictureName = request()->file('picture')->getClientOriginalName();
+
+            $path = request()->file('picture')->store('public/images');
+    
+            $savepicture = new Product();
+    
+            $savepicture->pictureName = $pictureName;
+    
+            $savepicture->path = $path;
+
+            $productsDetails = array_merge($productsDetails, ['logo'=> $path]);
+        }
+
+        $SaveProduct = Product::create($productsDetails);
+
+        $response = [
+
+            'shop' => $SaveProduct,
+
+            'message' => 'Your Shop has been registered',
+        ];
+
+        return response()->json($response, 200);
     }
 
     public function viewProduct($id)
