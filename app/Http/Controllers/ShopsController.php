@@ -97,4 +97,11 @@ class ShopsController extends Controller
 
         return response()->json($response, 200);
     }
+
+    public function deleteShop($id)
+    {
+        $shop = Shop::find($id);
+
+        $shop->delete();
+    }
 }
