@@ -16,6 +16,12 @@ class Shop extends Model
 
     public $incrementing = false;
 
+    protected $rules = [
+        
+        'email' => 'sometimes|required|email|unique:users',
+        
+    ];
+
     public function scopeFilter($query, array $filters)
     {
         if(isset($filters['search'])){
@@ -34,7 +40,7 @@ class Shop extends Model
         
         $this->attributes['password'] = bcrypt($password);
     }
-    
+
     public function setPhoneNumberAttribute($phone_number)
     {
        

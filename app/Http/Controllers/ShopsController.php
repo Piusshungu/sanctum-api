@@ -61,7 +61,7 @@ class ShopsController extends Controller
 
             'shop_name' => 'required',
             'phone_number' => 'required',
-            'email' => 'required|email|unique:shops,email,',
+            'email' => 'required|email|unique:shops,email,' .$id,
             'logo' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'location' => 'required',
             'category' => 'required',
