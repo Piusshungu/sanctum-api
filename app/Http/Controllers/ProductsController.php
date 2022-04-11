@@ -42,9 +42,9 @@ class ProductsController extends Controller
 
         $response = [
 
-            'shop' => $SaveProduct,
+            'product' => $SaveProduct,
 
-            'message' => 'Your Shop has been registered',
+            'message' => 'Product has been successfully added',
         ];
 
         return response()->json($response, 200);
