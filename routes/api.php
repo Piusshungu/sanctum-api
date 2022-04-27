@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ShopsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -55,4 +56,6 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::delete('/shop/delete/{id}', [ShopsController::class, 'deleteShop']);
 
     Route::get('/shop/view/{id}', [ShopsController::class, 'viewShop']);
+
+    Route::get('/orders', [OrdersController::class, 'index']);
 });
