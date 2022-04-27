@@ -20,4 +20,18 @@ class Order extends Model
     {
         $this->belongsTo(User::class);
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        if(isset($filters['search'])){
+
+            $query->where('user_id', 'like', '%'. request('search'). '%')
+
+            ->orWhere('created_at', 'like', '%'. request('search'). '%')
+
+            ->orWhere('product_id', 'like', '%'. request('search'). '%')
+
+            ->orWhere('phone_number', 'like', '%'. request('search'). '%');
+        }
+    }
 }
