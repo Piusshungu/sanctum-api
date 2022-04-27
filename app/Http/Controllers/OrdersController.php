@@ -13,4 +13,17 @@ class OrdersController extends Controller
             
         ->paginate(10)->withQueryString()->all();
     }
+
+    public function createNewOrder(Request $request)
+    {
+        $request->validate([
+
+            'user_id' => 'required',
+
+            'product_id' => 'required',
+
+            'quantity' => 'required',
+
+        ]);
+    }
 }
