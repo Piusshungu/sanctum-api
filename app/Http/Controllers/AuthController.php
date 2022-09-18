@@ -95,7 +95,7 @@ class AuthController extends Controller
 
         return [
 
-            'message' => 'User logged out successfully'
+            'message' => 'User logged out successfully.'
         ];
     }
 }
